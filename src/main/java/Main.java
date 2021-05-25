@@ -1,10 +1,11 @@
-import domain.Casella;
+import domain.Board;
 import domain.Giocatore;
 
 import java.util.List;
 import java.util.Random;
 
-import static domain.Casella.inizializzaBoard;
+import static domain.Board.getNumeroGiocatori;
+import static domain.Board.prossimoTurno;
 import static domain.Giocatore.*;
 
 public class Main {
@@ -12,39 +13,16 @@ public class Main {
     public static
     void main(String[] args)
     {
-        List<Casella> board = inizializzaBoard();
         List<Giocatore> listaGiocatori = creazioneGiocatori();
 
+        int numeroGiocatori = getNumeroGiocatori(listaGiocatori);
+        int turno = new Random().nextInt(getNumeroGiocatori(listaGiocatori)) ;
 
-        //si GIOCA
-        // come si vince ? quando finisce il gioco ?
-        int numeroGiocatori = listaGiocatori.size()-1;
-        int turno = new Random().nextInt(listaGiocatori.size()-1) ;
-
-        boolean flagGiocoFinito = true;
-        while(flagGiocoFinito){
-
-            Giocatore giocatoreAttuale = listaGiocatori.get(turno);
+        while(isFlagGiocoFinito(listaGiocatori)){
             giocatoreAvanza(listaGiocatori, turno);
             turno = prossimoTurno(numeroGiocatori, turno);
-
-            flagGiocoFinito = isFlagGiocoFinito(listaGiocatori);
-
-
-            System.out.println("il giocatore - " + giocatoreAttuale.getNickName() + " si trova sulla casella "+ giocatoreAttuale.getPosizione());
         }
 
-
-
-
-
-
-
-
-    }
-
-    private static int prossimoTurno(int numeroGiocatori, int turno) {
-        return turno + 1 > numeroGiocatori ? 0 : turno + 1;
     }
 
 }
