@@ -19,7 +19,6 @@ public class Main {
             giocatoreAvanza(listaGiocatori, turno);
             turno = prossimoTurno(getNumeroGiocatori(listaGiocatori), turno);
         }
-
     }
 
 }
