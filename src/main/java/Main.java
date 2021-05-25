@@ -13,11 +13,11 @@ public class Main {
     {
         List<Giocatore> listaGiocatori = creazioneGiocatori();
 
-        int turno = scegliTurnoInizialeDelGiocatore(listaGiocatori);
+        int turnoGiocatore = scegliGiocatoreIniziale(listaGiocatori);
 
         while(isFlagGiocoFinito(listaGiocatori)){
-            giocatoreAvanza(listaGiocatori, turno);
-            turno = prossimoTurno(getNumeroGiocatori(listaGiocatori), turno);
+            giocatoreAvanza(listaGiocatori.get(turnoGiocatore));
+            turnoGiocatore = prossimoTurno(getNumeroGiocatori(listaGiocatori), turnoGiocatore);
         }
     }
 

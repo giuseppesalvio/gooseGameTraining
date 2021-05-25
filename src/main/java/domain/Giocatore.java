@@ -35,9 +35,8 @@ public class Giocatore {
         return true;
     }
 
-    public static void giocatoreAvanza(List<Giocatore> listaGiocatori, int turno) {
+    public static void giocatoreAvanza(Giocatore giocatoreAttuale) {
         int tiroDado = getTiroDado();
-        Giocatore giocatoreAttuale = listaGiocatori.get(turno);
         int nuovaPosizione = giocatoreAttuale.getPosizione() + tiroDado;
         nuovaPosizione = checkSeTornareIndietro(nuovaPosizione);
         System.out.println("il giocatore - " + giocatoreAttuale.getNickName()
@@ -69,7 +68,7 @@ public class Giocatore {
         return turno + 1 > numeroGiocatori ? 0 : turno + 1;
     }
 
-    public static int scegliTurnoInizialeDelGiocatore(List<Giocatore> listaGiocatori) {
+    public static int scegliGiocatoreIniziale(List<Giocatore> listaGiocatori) {
         return new Random().nextInt(getNumeroGiocatori(listaGiocatori));
     }
 }
