@@ -20,5 +20,4 @@ public class Main {
             turnoGiocatore = prossimoTurno(getNumeroGiocatori(listaGiocatori), turnoGiocatore);
         }
     }
-
 }
