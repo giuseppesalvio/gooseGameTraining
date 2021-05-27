@@ -1,4 +1,4 @@
-package domain;
+package goose.game;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +19,7 @@ public class Giocatore {
 
     public static List<Giocatore> creazioneGiocatori() {
         List<Giocatore> listaGiocatori = new ArrayList<>();
-        int randomQuantitaGiocatore = new Random().nextInt(2) + 2;
+        int randomQuantitaGiocatore = new Random().nextInt(3) + 2;
         for (int i = 0; i < randomQuantitaGiocatore; i++) {
             listaGiocatori.add(new Giocatore("P_" + i, 1));
         }
@@ -36,20 +36,27 @@ public class Giocatore {
     }
 
     public static void giocatoreAvanza(Giocatore giocatoreAttuale) {
-        int tiroDado = getTiroDado();
+        int tiroDado1 = new Random().nextInt(6) + 1;
+        int tiroDado2 = new Random().nextInt(6) + 1;
+        int tiroDado = tiroDado1 + tiroDado2;
         int nuovaPosizione = giocatoreAttuale.getPosizione() + tiroDado;
         nuovaPosizione = checkSeTornareIndietro(nuovaPosizione);
-        System.out.println("il giocatore - " + giocatoreAttuale.getNickName()
-                + " che si trova sulla casella " + giocatoreAttuale.getPosizione()
-                + " lancia " + tiroDado
-                + " ora si trova sulla casella " + nuovaPosizione);
+        print(giocatoreAttuale, tiroDado1, tiroDado2, tiroDado, nuovaPosizione,giocatoreAttuale.getPosizione() + tiroDado);
         giocatoreAttuale.setPosizione(nuovaPosizione);
     }
 
-    private static int getTiroDado() {
-        int tiroDado = new Random().nextInt(5) + 1;
-        tiroDado += new Random().nextInt(5) + 1;
-        return tiroDado;
+    private static void print(Giocatore giocatoreAttuale, int tiroDado1, int tiroDado2, int tiroDado, int nuovaPosizione, int posizioneSenzaTornareIndietro) {
+        String posizioneOltre100 = "";
+        if(posizioneSenzaTornareIndietro>100){
+            posizioneOltre100 = " Non arriva precisamente a 100 quindi torna indietro";
+        }
+
+
+        System.out.println("il giocatore - " + giocatoreAttuale.getNickName()
+                + " che si trova sulla casella " + giocatoreAttuale.getPosizione()
+                + " lancia " + tiroDado1 + " + " + tiroDado2 + " = " + tiroDado
+                + posizioneOltre100
+                + " ora si trova sulla casella " + nuovaPosizione);
     }
 
     private static int checkSeTornareIndietro(int nuovaPosizione) {

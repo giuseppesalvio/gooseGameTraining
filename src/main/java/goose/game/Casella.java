@@ -1,4 +1,4 @@
-package domain;
+package goose.game;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
